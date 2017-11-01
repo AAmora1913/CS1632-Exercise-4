@@ -60,8 +60,10 @@ public class MonkeySim {
 	int f = x * 33;
 	int r = 17;
 	int q = f;
-	for (int j = x; j >= 0; j--) {
+	for (int j = 0; j < x; j++) {
 	    if (ml.get(j).getMonkeyNum() != 1) {
+		
+		//Change made here, reversed the loop
 		for (int k = 0; k < 50000; k++) {
 		    q += Math.atan(j) - Math.acos(x) + Math.asin(q);
 		}
@@ -85,22 +87,21 @@ public class MonkeySim {
      */
     
     public static String stringifyResults(int c, Monkey m, Monkey m2) {
-	String toReturn = new String("");
+	StringBuilder toReturn = new StringBuilder("");
 	try {
-	    for (int j=0; j < HEADER; j++) {
-		toReturn += "@";
-	    }
-	    toReturn += new String("//Round ");
-	    toReturn += new String("" + c);
-	    toReturn += new String(": Threw banana from Monkey (#");
-	    toReturn += new String(m.getMonkeyNum() + " / ID " + m.getId());
-	    toReturn += new String(") to Monkey (#");
-	    toReturn += new String(m2.getMonkeyNum() + " / ID " + m2.getId() + ")");
+		
+		//Change made here, loop removed, String additions changed to StringBuilder.append()
+	    toReturn.append("//Round ");
+	    toReturn.append("" + c);
+	    toReturn.append(": Threw banana from Monkey (#");
+	    toReturn.append(m.getMonkeyNum() + " / ID " + m.getId());
+	    toReturn.append(") to Monkey (#");
+	    toReturn.append(m2.getMonkeyNum() + " / ID " + m2.getId() + ")");
 	} catch (NoIdException noidex) {
 	    System.out.println("INVALID MONKEY!");
 	    System.exit(2);
 	}
-	return toReturn.substring(HEADER);
+	return toReturn.toString();
     }
     
     /**
